@@ -443,7 +443,6 @@ class Roca inherits Bloque {
 	
 	override method accion() {
 		personajeSimple.retrocede()
-		throw new Exception(message = "No puedo cruzar la roca.")
 	}
 }
 
