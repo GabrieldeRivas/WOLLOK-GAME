@@ -178,7 +178,6 @@ class Caja inherits Bloque {
 }
 
 class MarcadorLlave inherits Bloque {
-	override method colision() = false
 	override method image() = "llave.png"
 }
 
@@ -204,7 +203,6 @@ class MarcadorUnidadLlave inherits MarcadorVida {
 }
 
 class MarcadorDinero inherits Bloque {
-	override method colision() = false
 	override method image() = "marcadorDinero.png"
 }
 
@@ -231,7 +229,7 @@ class MarcadorDecenaDinero inherits Bloque {
 	}
 }
 
-class MarcadorUnidadDinero inherits MarcadorVida {
+class MarcadorUnidadDinero inherits Bloque {
 	override method image() {
 		if (personajeSimple.dinero()%10 == 9) {
 			return "mp9.png"
@@ -267,16 +265,14 @@ class MarcadorUnidadDinero inherits MarcadorVida {
 }
 
 class MarcadorVida inherits Bloque {
-	override method colision() = false
 	override method image() = "marcadorVida.png"
 }
 	
 class MarcadorEnergia inherits Bloque {
-	override method colision() = false
 	override method image() = "marcadorEnergia.png"
 }
 	
-class MarcadorDecena inherits MarcadorVida {
+class MarcadorDecena inherits Bloque {
 	override method image() {
 		if (personajeSimple.energia() > 49) {
 			return "md5.png"
@@ -299,7 +295,7 @@ class MarcadorDecena inherits MarcadorVida {
 	}
 }
 
-class MarcadorUnidad inherits MarcadorVida {
+class MarcadorUnidad inherits Bloque {
 	override method image() {
 		if (personajeSimple.energia()%10 == 9) {
 			return "md9.png"
@@ -334,7 +330,7 @@ class MarcadorUnidad inherits MarcadorVida {
 	}
 }
 
-class MarcadorUnidadVida inherits MarcadorVida {
+class MarcadorUnidadVida inherits Bloque {
 	override method image() {
 		if (personajeSimple.salud()%10 == 9) {
 			return "mu9.png"
@@ -369,7 +365,7 @@ class MarcadorUnidadVida inherits MarcadorVida {
 	}
 }
 
-class MarcadorDecenaVida inherits MarcadorVida {
+class MarcadorDecenaVida inherits Bloque {
 	override method image() {
 		if (personajeSimple.salud() > 49) {
 			return "mu5.png"
@@ -393,12 +389,11 @@ class MarcadorDecenaVida inherits MarcadorVida {
 }
 
 class CeldaEspecial inherits Bloque {
+	override method colision() = false
 	override method image() = "incognita.png"
 }
 
 class CeldaEspecialMasEnergia inherits CeldaEspecial {
-	override method colision() = false
-	
 	override method accion() {
 		personajeSimple.energizar(30)
 		game.removeVisual(self)
@@ -406,7 +401,6 @@ class CeldaEspecialMasEnergia inherits CeldaEspecial {
 }
 
 class CeldaEspecialMenosEnergia inherits CeldaEspecial {
-	override method colision() = false
 	override method accion() {
 		personajeSimple.desenergizar(15)
 		game.removeVisual(self)
@@ -414,7 +408,6 @@ class CeldaEspecialMenosEnergia inherits CeldaEspecial {
 }
 
 class CeldaEspecialTP inherits CeldaEspecial {
-	override method colision() = false
 	override method accion() {
 		self.ubicarAleatoriamente(personajeSimple)
 		game.removeVisual(self)

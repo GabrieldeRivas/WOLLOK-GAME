@@ -99,14 +99,9 @@ class Personaje {
 	method retrocede() {
 		self.position(direccion.opuesto().siguiente(position))
 	}
-
-	method retrocedeCon(caja) {
-		self.retrocede()
-		caja.movete(direccion.opuesto())
-	}
 	
 	method recoger() {
-		game.getObjectsIn(personajeSimple.direccion().siguiente(self.position())).forEach({e => e.recogerlo()})
+		game.getObjectsIn(personajeSimple.direccion().siguiente(self.position())).forEach({o => o.recogerlo()})
 	}
 }
 
